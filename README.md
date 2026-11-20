@@ -21,7 +21,7 @@ Target pengguna adalah siapa saja yang berminat menghilangkan beban pikiran (dec
 ---
 
 ## Tautan
-#### PWS
+#### PWS (API endpoint)
 https://clement-kevin-minlifecommunity.pws.cs.ui.ac.id 
 
 #### Figma
