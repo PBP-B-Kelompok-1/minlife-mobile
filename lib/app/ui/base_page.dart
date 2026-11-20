@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:minlife_mobile/app/ui/theme.dart';
-import 'package:minlife_mobile/modules/posts/ui/frontpage.dart';
 
 class BasePage extends StatelessWidget {
   const BasePage({
@@ -41,8 +41,24 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
+class NavItem {
+  const NavItem({
+    required this.label,
+    required this.routeName
+  });
+
+  final String label;
+  final String routeName;
+}
+
 class BaseDrawer extends StatelessWidget {
   const BaseDrawer({super.key});
+
+  static const List<NavItem> navItems = [
+    NavItem(label: 'home', routeName: 'home'),
+    NavItem(label: 'journal', routeName: 'journal'),
+    NavItem(label: 'weekly challenge', routeName: 'challenge'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +80,15 @@ class BaseDrawer extends StatelessWidget {
               ],
             ),
           ),
-          ListTile(
-            title: const Text('home'),
-            // Navigate to the portfolio home screen
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Frontpage(),
-                ),
-              );
-            },
-          ),
-        ],
+          for (final item in navItems)
+            ListTile(
+              title: Text(item.label),
+              onTap: () {
+                Navigator.pop(context);
+                context.goNamed(item.routeName);
+              },
+            )
+       ],
       ),
     );
   }
